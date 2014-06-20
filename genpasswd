@@ -1,0 +1,8 @@
+# Place this in your ~/,bashrc file and generate randomized passwords
+# If you want a shorter/longer password, provide the argument like 'genpasswd 12'
+# This script is tailored for OS X - on Linux you likely don't need the LC_CTYPE=C prepended to the tr
+genpasswd() {
+        local l=$1
+        [ "$l" == "" ] && l=16
+        LC_CTYPE=C tr -dc A-Za-z0-9_\!\@\#\$\%\^\&\*\(\)-+= < /dev/urandom | head -c ${l} | xargs
+}
